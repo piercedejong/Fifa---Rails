@@ -41,6 +41,7 @@ GEM
     arel (7.1.4)
     bindex (0.5.0)
     builder (3.2.3)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -77,6 +78,9 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.3-x86-mingw32)
       mini_portile2 (~> 2.3.0)
+    pry (0.11.3)
+      coderay (~> 1.1.0)
+      method_source (~> 0.9.0)
     puma (3.11.4)
     rack (2.0.5)
     rack-test (0.6.3)
@@ -156,6 +160,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   jbuilder (~> 2.5)
   jquery-rails
+  pry
   puma (~> 3.0)
   rails (~> 5.0.7)
   sass-rails (~> 5.0)
@@ -166,4 +171,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2
