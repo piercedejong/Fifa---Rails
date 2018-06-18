@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(function(){
+
+  $(".test").click(function(){
+    $.ajax({
+         method: "GET",
+         url: window.location.origin + '/welcome/create_user'
+    })
+  })
+
+})
