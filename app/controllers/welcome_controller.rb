@@ -70,7 +70,7 @@ class WelcomeController < ApplicationController
       {value: 0, name:"Poland"},
       {value: 0, name:"Spain"},
       {value: 0, name:"Uruguay"},
-      {value: 0, name:"South Korea"},
+      {value: 0, name:"Korea Republic"},
     ]
 
     andrew = [

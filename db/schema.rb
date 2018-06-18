@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180618174954) do
+ActiveRecord::Schema.define(version: 20180618220113) do
 
   create_table "teams", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "name"
-    t.integer  "value"
     t.integer  "user_id"
+    t.integer  "value"
   end
 
   create_table "users", force: :cascade do |t|
@@ -25,12 +25,6 @@ ActiveRecord::Schema.define(version: 20180618174954) do
     t.datetime "updated_at", null: false
     t.string   "name"
     t.integer  "uid"
-  end
-
-  create_table "welcomes", force: :cascade do |t|
-    t.string   "index"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end
