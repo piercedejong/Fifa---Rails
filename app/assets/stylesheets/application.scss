@@ -21,13 +21,18 @@
  .title {
    border-bottom: solid;
    font-size: 2.75vw;
-   white-space: nowrap
+
  }
 
 .inside {
   //display: inline-block;
+  margin: auto;
 }
 
 .outside {
   margin: auto;
+}
+
+.nowrap{
+   white-space: nowrap;
 }
