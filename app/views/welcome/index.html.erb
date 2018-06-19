@@ -32,5 +32,9 @@
 <script>alert('Error: could not load the latest scrores.')</script>
 <% end %>
 
+<% if !@change %>
+<script>alert('All scores already up to date')</script>
+<% end %>
 
-<button class="test btn btn-primary btn-lg" style="font-size: 2.25rem">Update Scores</button>
+
+<a class="update btn btn-primary btn-lg" style="font-size: 2.25rem">Update Scores</a>

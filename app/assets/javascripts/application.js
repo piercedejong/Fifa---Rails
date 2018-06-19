@@ -19,11 +19,20 @@
 //= require_tree .
 $(function(){
 
-  $(".test").click(function(){
+  $(".update").click(function(){
     $.ajax({
          method: "GET",
          url: window.location.origin + '/welcome/create_user'
     })
+   .done(function(response) {
+     if(!response["load"]){
+       alert('Error: could not load the latest scrores.')
+     }
+     if(!response["change"]){
+       alert('All scores already up to date')
+     }else{
+       location.reload()
+     }
+   })
   })
-
 })
