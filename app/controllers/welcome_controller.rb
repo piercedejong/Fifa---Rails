@@ -1,6 +1,11 @@
 class WelcomeController < ApplicationController
 
   def index
+    @load = true
+  end
+
+
+  def create_user
     require 'rest_client'
     begin
       # Get the API data
@@ -22,13 +27,10 @@ class WelcomeController < ApplicationController
       @load = true
     # Error handle
     rescue
-      logger.error("Failed To Read API")
       @load = false
     end
-  end
-
-
-  def create_user
+    binding.pry
+    redirect_to :back
   end
 
 end
