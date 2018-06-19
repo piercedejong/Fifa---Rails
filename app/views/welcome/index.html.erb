@@ -1,7 +1,7 @@
 <div class="row content" style="margin:0px">
   <% User.all.each do |u| %>
-    <div class="inside col" style="padding:5px">
-      <div class="title nowrap"><%=u.name%></div>
+    <div class="inside col" style="padding:0px">
+      <div class="title nowrap underline"><%=u.name%></div>
       <% if u.uid%2 ==0 %>
       <table class="table table-bordered table-striped">
       <% else %>
@@ -17,7 +17,7 @@
             </tr>
           <% end %>
             <tr>
-              <th>Total Points</th>
+              <th class="nowrap">Total Points</th>
               <th scope="row"><%=u.total%></th>
             </tr>
         </tbody>
@@ -25,6 +25,8 @@
     </div>
   <%end%>
 </div>
+
+<h1 class="title center border">Current Leader(s): <%=current_leader%></h1>
 
 <% if !@load %>
 <script>alert('Error: could not load the latest scrores.')</script>

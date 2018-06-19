@@ -19,13 +19,31 @@
  }
 
  .title {
-   border-bottom: solid;
-   font-size: 2.75vw;
+   font-size: 2.75rem;
+ }
 
+ .border {
+   border: solid;
+ }
+
+ .table {
+   font-size: 1.25rem;
+ }
+
+ td {
+   padding:0px
+ }
+
+ th {
+   padding:0px
+ }
+
+ .underline{
+   border-bottom: solid;
  }
 
 .inside {
-  //display: inline-block;
+  max-width: fit-content;
   margin: auto;
 }
 
@@ -35,4 +53,8 @@
 
 .nowrap{
    white-space: nowrap;
+}
+
+.center{
+  text-align: center;
 }
