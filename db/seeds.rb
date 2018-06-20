@@ -13,6 +13,10 @@ User.all.each do |u|
   u.destroy
 end
 
+Match.all.each do |u|
+  u.destroy
+end
+
 user = [
   {uid: 0, name:"EdCruise"},
   {uid: 1, name:"El Presidente"},
@@ -140,3 +144,11 @@ User.all.each do |x|
     x.teams.create(t)
   end
 end
+
+a = [
+  {game: "none", time: DateTime.current}
+  ]
+
+  a.each do |g|
+    Match.create(g)
+  end

@@ -3,6 +3,24 @@ class WelcomeController < ApplicationController
   def index
     @load = true
     @change = true
+
+    require 'reset_client'
+
+    begin
+      response = RestClient.get 'http://worldcup.sfg.io/matches/today', {:accept => :json}
+      # if no matches today
+      if response ==  "[]"
+        response = RestClient.get 'http://worldcup.sfg.io/matches/', {:accept => :json}
+        response = JSON.parse(response)
+      # matches played today
+      else
+        response = JSON.parse(response)
+      end
+
+
+    rescue
+
+    end
   end
 
 
@@ -13,7 +31,6 @@ class WelcomeController < ApplicationController
       # Get the API data
       response = RestClient.get 'http://worldcup.sfg.io/teams/results', {:accept => :json}
       @load = true
-      response = JSON.parse(response)
       # Loop through all of the teams
       response.each do |r|
       #   # Loop through all of the users
@@ -40,5 +57,4 @@ class WelcomeController < ApplicationController
       }
     end
   end
-
 end

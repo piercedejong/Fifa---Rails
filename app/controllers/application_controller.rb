@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 
   def current_leader
     top = 0
-
     User.all.each do |u|
       if u.total > top
         top = u.total
