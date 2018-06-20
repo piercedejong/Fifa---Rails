@@ -12,13 +12,19 @@
         <tbody>
           <% u.teams.all.each do |t| %>
             <tr>
-              <td class="nowrap"><%=t.name%></td>
-              <th scope="row"><%=t.value%></th>
+              <% if t.single %>
+                <td class="nowrap single"><%=t.name%></td>
+              <% elsif t.everyone %>
+                <td class="nowrap everyone"><%=t.name%></td>
+              <% else %>
+                <td class="nowrap"><%=t.name%></td>
+              <% end %>
+              <th scope="row" class="center"><%=t.value%></th>
             </tr>
           <% end %>
             <tr>
               <th class="nowrap">Total Points</th>
-              <th scope="row"><%=u.total%></th>
+              <th scope="row" class="center"><%=u.total%></th>
             </tr>
         </tbody>
       </table>
@@ -37,4 +43,4 @@
 <% end %>
 
 
-<a class="update btn btn-primary btn-lg" style="font-size: 2.25rem">Update Scores</a>
+<button class="update btn btn-dark btn-lg" style="font-size: 2.25rem" role="button">Update Scores</button>

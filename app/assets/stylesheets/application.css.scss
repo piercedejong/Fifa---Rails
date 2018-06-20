@@ -9,6 +9,8 @@
  * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
+
+ *= require_self
  */
 
  @import "bootstrap";
@@ -16,6 +18,18 @@
  .column{
    border: solid;
    padding:0px;
+ }
+
+ .update {
+
+ }
+
+ .everyone {
+   background-color: darkgrey;
+ }
+
+ .single {
+   background-color: lightsalmon;
  }
 
  .title {
@@ -28,14 +42,6 @@
 
  .table {
    font-size: 1.25rem;
- }
-
- td {
-   padding:0px
- }
-
- th {
-   padding:0px
  }
 
  .underline{

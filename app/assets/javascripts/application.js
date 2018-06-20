@@ -20,6 +20,7 @@
 $(function(){
 
   $(".update").click(function(){
+    $(".update").hide()
     $.ajax({
          method: "GET",
          url: window.location.origin + '/welcome/update'
@@ -32,6 +33,7 @@ $(function(){
      }else{
        location.reload()
      }
+       $(".update").show()
    })
   })
 })
