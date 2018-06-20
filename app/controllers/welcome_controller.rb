@@ -39,7 +39,7 @@ class WelcomeController < ApplicationController
       response = JSON.parse(response)
       User.all.each do |u|
         u.teams.all.each do |t|
-          @team = response.find{|key, hash| key["country"] == t.name }
+          @team = response.find{|key| key["country"] == t.name }
           if @team != nil
             points = @team["wins"] - @team["losses"]
             if t.value != points
