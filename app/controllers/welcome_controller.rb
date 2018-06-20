@@ -3,29 +3,6 @@ class WelcomeController < ApplicationController
   def index
     @load = true
     @change = true
-
-    # require 'rest_client'
-    #
-    # begin
-    #   response = RestClient.get 'http://worldcup.sfg.io/matches/today', {:accept => :json}
-    #   # if no matches today
-    #   if response == "[]"
-    #     response = RestClient.get 'http://worldcup.sfg.io/matches/', {:accept => :json}
-    #     response = JSON.parse(response)
-    #     response.each do |r|
-    #       if r["winner"] == nil
-    #         binding.pry
-    #         break
-    #       end
-    #     end
-    #   # matches played today
-    #   else
-    #     response = JSON.parse(response)
-    #     binding.pry
-    #   end
-    # rescue
-    #
-    # end
   end
 
 
