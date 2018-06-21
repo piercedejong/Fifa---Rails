@@ -13,10 +13,6 @@ User.all.each do |u|
   u.destroy
 end
 
-Match.all.each do |u|
-  u.destroy
-end
-
 user = [
   {uid: 0, name:"EdCruise"},
   {uid: 1, name:"El Presidente"},
