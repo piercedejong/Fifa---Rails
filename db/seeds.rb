@@ -144,11 +144,3 @@ User.all.each do |x|
     x.teams.create(t)
   end
 end
-
-a = [
-  {game: "none"}
-  ]
-
-  a.each do |g|
-    Match.create(g)
-  end
