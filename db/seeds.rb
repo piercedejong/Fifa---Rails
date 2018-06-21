@@ -146,7 +146,7 @@ User.all.each do |x|
 end
 
 a = [
-  {game: "none", time: DateTime.current}
+  {game: "none"}
   ]
 
   a.each do |g|
