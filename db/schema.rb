@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180621143828) do
+ActiveRecord::Schema.define(version: 20180625162048) do
 
   create_table "matches", force: :cascade do |t|
     t.datetime "created_at", null: false
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20180621143828) do
     t.integer  "value"
     t.boolean  "everyone",   default: false
     t.boolean  "single",     default: false
+    t.string   "group"
   end
 
   create_table "users", force: :cascade do |t|
