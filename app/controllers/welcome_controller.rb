@@ -42,7 +42,10 @@ class WelcomeController < ApplicationController
             if t.value != points
               t.update(value:points)
               @change = true
-            else
+            end
+
+            if @team != @group.first and @team != @group.second or t.name.eql? "Senegal"
+              t.update(eliminated:true)
             end
           end
         end

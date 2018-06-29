@@ -12,7 +12,15 @@
         <tbody>
           <% u.teams.all.each do |t| %>
             <tr>
-              <% if t.single %>
+              <% if t.eliminated %>
+                <% if t.single %>
+                  <td class="nowrap single strikeout"><%=t.name%></td>
+                <% elsif t.everyone %>
+                  <td class="nowrap everyone strikeout"><%=t.name%></td>
+                <% else %>
+                  <td class="nowrap strikeout"><%=t.name%></td>
+                <% end %>
+              <% elsif t.single %>
                 <td class="nowrap single"><%=t.name%></td>
               <% elsif t.everyone %>
                 <td class="nowrap everyone"><%=t.name%></td>
