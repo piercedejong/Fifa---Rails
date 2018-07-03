@@ -20,29 +20,33 @@ class WelcomeController < ApplicationController
       @match_table = @match_table.select {|key| key["stage_name"] == "First stage"}
       User.all.each do |u|
         u.teams.all.each do |t|
-          # @group = @group_table.find{|key| key["letter"] == t.group}["ordered_teams"]
-          # @team = @group.find{|key| key["country"] == t.name}
-          @match_home = @match_table.select {|key| key["home_team_country"] == t.name}
-          @match_away = @match_table.select {|key| key["away_team_country"] == t.name}
-          @knockout_home = @knockout_table.select {|key| key["home_team_country"] == t.name}
-          @knockout_away = @knockout_table.select {|key| key["away_team_country"] == t.name}
-          if @match_home != [] and @match_away != []
-            points = @match_home.select {|key| key["winner"] == t.name}.length + @match_away.select {|key| key["winner"] == t.name}.length
-            draws = @match_home.select {|key| key["winner"] == "Draw"}.length + @match_away.select {|key| key["winner"] == "Draw"}.length
-            loss = 3 - points - draws
-            @score = points - loss
+          if !t.knockout
+            # @group = @group_table.find{|key| key["letter"] == t.group}["ordered_teams"]
+            # @team = @group.find{|key| key["country"] == t.name}
+            @match_home = @match_table.select {|key| key["home_team_country"] == t.name}
+            @match_away = @match_table.select {|key| key["away_team_country"] == t.name}
+            @knockout_home = @knockout_table.select {|key| key["home_team_country"] == t.name}
+            @knockout_away = @knockout_table.select {|key| key["away_team_country"] == t.name}
+            if @match_home != [] and @match_away != []
+              points = @match_home.select {|key| key["winner"] == t.name}.length + @match_away.select {|key| key["winner"] == t.name}.length
+              draws = @match_home.select {|key| key["winner"] == "Draw"}.length + @match_away.select {|key| key["winner"] == "Draw"}.length
+              loss = 3 - points - draws
+              @score = points - loss
 
-            points = @knockout_home.select {|key| key["winner"] == t.name}.length + @knockout_away.select {|key| key["winner"] == t.name}.length
-            loss = @knockout_home.select {|key| key["winner"] != t.name and key["winner"] != nil}.length + @knockout_away.select {|key| key["winner"] != t.name and key["winner"] != nil}.length
-
-            @score = @score + points*2 - loss
-            if t.value != @score
-              t.update(value:@score)
-              @change = true
+              points = @knockout_home.select {|key| key["winner"] == t.name}.length + @knockout_away.select {|key| key["winner"] == t.name}.length
+              loss = @knockout_home.select {|key| key["winner"] != t.name and key["winner"] != nil}.length + @knockout_away.select {|key| key["winner"] != t.name and key["winner"] != nil}.length
+              if points < loss or @knockout_away == [] and @knockout_home == []
+                t.update(eliminated:true)
+              end
+              @score = @score + points*2 - loss
+              if t.value != @score
+                t.update(value:@score)
+                @change = true
+              end
+              #if @team != @group.first and @team != @group.second or t.name.eql? "Senegal"
+              #  t.update(eliminated:true)
+              #end
             end
-            #if @team != @group.first and @team != @group.second or t.name.eql? "Senegal"
-            #  t.update(eliminated:true)
-            #end
           end
         end
       end
@@ -61,61 +65,60 @@ class WelcomeController < ApplicationController
   end
 
   def knockout
-    reset_extra
+    @load = true
+    @change = true
   end
 
-  def reset_extra
-    User.all.each do |u|
-      session[u.name] = 0
+  def knockout_update
+    @change = false
+    require 'rest_client'
+    start = Time.now
+    begin
+      @match_table = RestClient.get 'https://worldcup.sfg.io/matches', {:accept => :json}
+      @match_table = JSON.parse(@match_table)
+      @knockout_table = @match_table.select {|key| key["stage_name"] != "First stage"}
+      @round_16_table = @knockout_table.select {|key| key["stage_name"] == "Round of 16"}
+      @quarter_table = @knockout_table.select {|key| key["stage_name"] == "Quarter-finals"}
+      @semi_table = @knockout_table.select {|key| key["stage_name"] == "Semi-finals"}
+      @final_table = @knockout_table.select {|key| key["stage_name"] == "Final"}
+      @third_table = @knockout_table.select {|key| key["stage_name"] == "Play-off for third place"}
+      User.all.each do |u|
+        u.teams.all.each do |t|
+          if t.knockout
+            @knockout_home = @knockout_table.select {|key| key["home_team_country"] == t.name}
+            @knockout_away = @knockout_table.select {|key| key["away_team_country"] == t.name}
+            @score = @round_16_table.select {|key| key["winner"] == t.name}.length * 2
+            @score += @quarter_table.select {|key| key["winner"] == t.name}.length * 3
+            @score += @semi_table.select {|key| key["winner"] == t.name}.length * 4
+            @score += @third_table.select {|key| key["winner"] == t.name}.length * 5
+            @score += @final_table.select {|key| key["winner"] == t.name}.length * 6
+
+            points = @knockout_home.select {|key| key["winner"] == t.name}.length + @knockout_away.select {|key| key["winner"] == t.name}.length
+            loss = @knockout_home.select {|key| key["winner"] != t.name and key["winner"] != nil}.length + @knockout_away.select {|key| key["winner"] != t.name and key["winner"] != nil}.length
+            if points < loss
+              t.update(eliminated:true)
+            end
+            @score -= loss*2
+
+            if t.value != @score
+              t.update(value:@score)
+              @change = true
+            end
+          end
+        end
+      end
+      @load = true
+    rescue
+      @load = false
     end
-  end
-
-  def knockout_team
-    # @team = params["team"].capitalize
-    # require 'rest_client'
-    # @matches = RestClient.get 'https://worldcup.sfg.io/matches', {:accept => :json}
-    # @matches = JSON.parse(@matches)
-    # @stage = @matches.select {|key| key["stage_name"] == params["round"]}
-    # if @stage.find {|key| key["home_team_country"] == nil }
-    #   knockout_future
-    # else
-    #   @match = @stage.find {|key| key["home_team_country"].include? @team}
-    #   if @match == nil
-    #     @match = @stage.find {|key| key["away_team_country"].include? @team}
-    #     @winner = @match["away_team_country"]
-    #     @loser = @match["home_team_country"]
-    #   else
-    #     @loser = @match["away_team_country"]
-    #     @winner = @match["home_team_country"]
-    #   end
-    #   @array = []
-    #   User.all.each do |u|
-    #     u.teams.all.each do |t|
-    #       if t.name.include? @winner
-    #         session[u.name] += 2
-    #       end
-    #       if t.name.include? @loser
-    #         session[u.name] -= 1
-    #       end
-    #     end
-    #     @array.push(u.total+session[u.name])
-    #   end
-    #   @winner = @winner[0..2].upcase
-    #   @loser = @loser[0..2].upcase
-    #   if params["round"].include? "16"
-    #     @round = "16"
-    #   else
-    #     @round = "8"
-    #   end
-    # end
-    # if request.xhr?
-    #   render :json => {
-    #     points: @array,
-    #     winner: @winner,
-    #     loser: @loser,
-    #     round: @round
-    #   }
-    # end
+    stop = Time.now
+    puts(stop-start)
+    if request.xhr?
+      render :json => {
+        load: @load,
+        change: @change,
+      }
+    end
   end
 
   def knockout_future

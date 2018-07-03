@@ -36,4 +36,22 @@ $(function(){
        $(".update").show()
    })
   })
+
+  $(".knockout").click(function(){
+    $(".update").hide()
+    $.ajax({
+         method: "GET",
+         url: window.location.origin + '/welcome/knockout_update'
+    })
+   .done(function(response) {
+     if(!response["load"]){
+       alert('Error: could not load the latest scrores.')
+     }else if(!response["change"]){
+       alert('All scores already up to date')
+     }else{
+       location.reload()
+     }
+       $(".update").show()
+   })
+  })
 })

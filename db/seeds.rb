@@ -14,13 +14,15 @@ User.all.each do |u|
 end
 
 user = [
-  {uid: 0, name:"EdCruise"},
-  {uid: 1, name:"El Presidente"},
-  {uid: 2, name:"Dentista"},
-  {uid: 3, name:"Shark Sieloff"},
-  {uid: 4, name:"EdTeach"},
-  {uid: 5, name:"The Undergrad"},
-  {uid: 6, name:"Zimon Ibrah"},
+  {uid: 0, knockout: true, name:"EdCruise"},
+  {uid: 1, knockout: true, name:"El Presidente"},
+  {uid: 2, knockout: false, name:"Dentista"},
+  {uid: 3, knockout: true, name:"Shark Sieloff"},
+  {uid: 4, knockout: false, name:"EdTeach"},
+  {uid: 5, knockout: true, name:"The Undergrad"},
+  {uid: 6, knockout: true, name:"Zimon Ibrah"},
+  {uid: 7, knockout: true, name:"Nick"},
+  {uid: 8, knockout: true, name:"Chloe/Martin"},
 ]
 
 user.each do |u|
@@ -40,6 +42,11 @@ edward = [
   {group: "E", value: 0, name:"Serbia", single: true},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "H", value: 0, name:"Senegal", single: true},
+  {group: "", value: 0, name:"France", knockout:true, single: true},
+  {group: "", value: 0, name:"Croatia", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Colombia", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
 frank = [
@@ -55,6 +62,11 @@ frank = [
   {group: "B", value: 0, name:"Spain"},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "F", value: 0, name:"Korea Republic", single: true},
+  {group: "", value: 0, name:"Spain", knockout:true},
+  {group: "", value: 0, name:"England", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Mexico", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
 andrew = [
@@ -70,6 +82,7 @@ andrew = [
   {group: "B", value: 0, name:"Spain"},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "E", value: 0, name:"Costa Rica", single: true},
+
 ]
 
 rob = [
@@ -85,6 +98,19 @@ rob = [
   {group: "B", value: 0, name:"Spain"},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "E", value: 0, name:"Switzerland"},
+  {group: "", value: 0, name:"Brazil", knockout:true},
+  {group: "", value: 0, name:"England", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Switzerland", knockout:true},
+  {group: "", value: 0, name:"Russia", knockout:true},
+]
+
+nick = [
+  {group: "", value: 0, name:"Belgium", knockout:true},
+  {group: "", value: 0, name:"Croatia", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Colombia", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
 ed = [
@@ -115,6 +141,11 @@ pierce = [
   {group: "B", value: 0, name:"Spain"},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "E", value: 0, name:"Switzerland"},
+  {group: "", value: 0, name:"Belgium", knockout:true},
+  {group: "", value: 0, name:"Portugal", knockout:true},
+  {group: "", value: 0, name:"Colombia", knockout:true},
+  {group: "", value: 0, name:"Mexico", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
 simon = [
@@ -130,9 +161,22 @@ simon = [
   {group: "B", value: 0, name:"Spain"},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "A", value: 0, name:"No Bonus Team"},
+  {group: "", value: 0, name:"Belgium", knockout:true},
+  {group: "", value: 0, name:"Croatia", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Mexico", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
-teams = [edward,frank,andrew,rob,ed,pierce,simon]
+chloe = [
+  {group: "", value: 0, name:"Brazil", knockout:true},
+  {group: "", value: 0, name:"England", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Mexico", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
+]
+
+teams = [edward,frank,andrew,rob,ed,pierce,simon,nick,chloe]
 
 User.all.each do |x|
   team = teams[x.uid]

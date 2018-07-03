@@ -1,6 +1,6 @@
 <div class="row content" style="margin:0px">
   <% User.all.each do |u| %>
-    <% if u.uid < 7 %>
+    <% if u.knockout %>
       <div class="inside col" style="padding:0px">
         <div class="title nowrap underline"><%=u.name%></div>
         <% if u.uid%2 ==0 %>
@@ -12,7 +12,7 @@
           <thead class="thead-dark"></thead>
           <tbody>
             <% u.teams.all.each do |t| %>
-              <% if !t.knockout %>
+              <% if t.knockout %>
                 <tr>
                   <% if t.eliminated %>
                     <% if t.single %>
@@ -35,7 +35,7 @@
             <% end %>
               <tr>
                 <th class="nowrap">Total Points</th>
-                <th scope="row" class="center"><%=u.total%></th>
+                <th scope="row" class="center"><%=u.knockout_total%></th>
               </tr>
           </tbody>
         </table>
@@ -55,6 +55,6 @@
 <% end %>
 
 
-<button class="update btn btn-dark btn-lg" style="font-size: 2.25rem" role="button">Update Scores</button>
+<button class="knockout btn btn-dark btn-lg" style="font-size: 2.25rem" role="button">Update Scores</button>
 
-<%= link_to "Knockout Bracket", welcome_knockout_path, :class =>"bottomaligned btn btn-warning", :role => "button" %>
+<%= link_to "Origianl Bracket", welcome_index_path, :class =>"bottomaligned btn btn-warning", :role => "button" %>

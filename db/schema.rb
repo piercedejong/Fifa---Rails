@@ -10,14 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180629160234) do
-
-  create_table "matches", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string   "game"
-    t.datetime "time"
-  end
+ActiveRecord::Schema.define(version: 20180703151222) do
 
   create_table "teams", force: :cascade do |t|
     t.datetime "created_at",                 null: false
@@ -29,6 +22,7 @@ ActiveRecord::Schema.define(version: 20180629160234) do
     t.boolean  "single",     default: false
     t.string   "group"
     t.boolean  "eliminated", default: false
+    t.boolean  "knockout",   default: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -36,6 +30,7 @@ ActiveRecord::Schema.define(version: 20180629160234) do
     t.datetime "updated_at", null: false
     t.string   "name"
     t.integer  "uid"
+    t.boolean  "knockout"
   end
 
 end
