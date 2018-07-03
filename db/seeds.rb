@@ -21,7 +21,7 @@ user = [
   {uid: 4, knockout: false, name:"EdTeach"},
   {uid: 5, knockout: true, name:"The Undergrad"},
   {uid: 6, knockout: true, name:"Zimon Ibrah"},
-  {uid: 7, knockout: true, name:"Rob"},
+  {uid: 7, knockout: true, name:"Joe Voltmeter"},
   {uid: 8, knockout: true, name:"Chloe/Martin"},
 ]
 
