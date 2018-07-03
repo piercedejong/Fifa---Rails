@@ -38,7 +38,7 @@ $(function(){
   })
 
   $(".knockout").click(function(){
-    $(".update").hide()
+    $(".knockout").hide()
     $.ajax({
          method: "GET",
          url: window.location.origin + '/welcome/knockout_update'
@@ -51,7 +51,7 @@ $(function(){
      }else{
        location.reload()
      }
-       $(".update").show()
+       $(".knockout").show()
    })
   })
 })
