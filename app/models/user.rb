@@ -17,13 +17,12 @@ class User < ApplicationRecord
 
 
   def knockout_total
-      total = 0
-      self.teams.all.each do |t|
-        if t.knockout
-          total += t.value
-        end
+    total = 0
+    self.teams.all.each do |t|
+      if t.knockout
+        total += t.value
       end
-      return total
     end
-
+    return total
+  end
 end
