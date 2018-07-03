@@ -21,7 +21,7 @@ user = [
   {uid: 4, knockout: false, name:"EdTeach"},
   {uid: 5, knockout: true, name:"The Undergrad"},
   {uid: 6, knockout: true, name:"Zimon Ibrah"},
-  {uid: 7, knockout: true, name:"Nick"},
+  {uid: 7, knockout: true, name:"Rob"},
   {uid: 8, knockout: true, name:"Chloe/Martin"},
 ]
 
@@ -86,6 +86,14 @@ andrew = [
 ]
 
 rob = [
+  {group: "", value: 0, name:"Belgium", knockout:true},
+  {group: "", value: 0, name:"Croatia", knockout:true},
+  {group: "", value: 0, name:"Uruguay", knockout:true},
+  {group: "", value: 0, name:"Colombia", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
+]
+
+nick = [
   {group: "D", value: 0, name:"Argentina", everyone: true},
   {group: "G", value: 0, name:"Belgium"},
   {group: "E", value: 0, name:"Brazil"},
@@ -103,14 +111,6 @@ rob = [
   {group: "", value: 0, name:"Uruguay", knockout:true},
   {group: "", value: 0, name:"Switzerland", knockout:true},
   {group: "", value: 0, name:"Russia", knockout:true},
-]
-
-nick = [
-  {group: "", value: 0, name:"Belgium", knockout:true},
-  {group: "", value: 0, name:"Croatia", knockout:true},
-  {group: "", value: 0, name:"Uruguay", knockout:true},
-  {group: "", value: 0, name:"Colombia", knockout:true},
-  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
 ed = [
@@ -176,7 +176,7 @@ chloe = [
   {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
-teams = [edward,frank,andrew,rob,ed,pierce,simon,nick,chloe]
+teams = [edward,frank,andrew,nick,ed,pierce,simon,rob,chloe]
 
 User.all.each do |x|
   team = teams[x.uid]

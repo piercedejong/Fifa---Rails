@@ -35,8 +35,9 @@ class WelcomeController < ApplicationController
 
               points = @knockout_home.select {|key| key["winner"] == t.name}.length + @knockout_away.select {|key| key["winner"] == t.name}.length
               loss = @knockout_home.select {|key| key["winner"] != t.name and key["winner"] != nil}.length + @knockout_away.select {|key| key["winner"] != t.name and key["winner"] != nil}.length
-              if points < loss or @knockout_away == [] and @knockout_home == []
+              if points < loss or (@knockout_away == [] and @knockout_home == [])
                 t.update(eliminated:true)
+                @change = true
               end
               @score = @score + points*2 - loss
               if t.value != @score
@@ -97,6 +98,7 @@ class WelcomeController < ApplicationController
             loss = @knockout_home.select {|key| key["winner"] != t.name and key["winner"] != nil}.length + @knockout_away.select {|key| key["winner"] != t.name and key["winner"] != nil}.length
             if points < loss
               t.update(eliminated:true)
+              @change = true
             end
             @score -= loss*2
 
