@@ -86,11 +86,11 @@ andrew = [
 ]
 
 rob = [
-  {group: "", value: 0, name:"Belgium", knockout:true},
-  {group: "", value: 0, name:"Croatia", knockout:true},
+  {group: "", value: 0, name:"Brazil", knockout:true},
+  {group: "", value: 0, name:"England", knockout:true},
   {group: "", value: 0, name:"Uruguay", knockout:true},
-  {group: "", value: 0, name:"Colombia", knockout:true},
-  {group: "", value: 0, name:"Sweden", knockout:true},
+  {group: "", value: 0, name:"Switzerland", knockout:true},
+  {group: "", value: 0, name:"Russia", knockout:true},
 ]
 
 nick = [
@@ -106,11 +106,11 @@ nick = [
   {group: "B", value: 0, name:"Spain"},
   {group: "A", value: 0, name:"Uruguay", everyone: true},
   {group: "E", value: 0, name:"Switzerland"},
-  {group: "", value: 0, name:"Brazil", knockout:true},
-  {group: "", value: 0, name:"England", knockout:true},
+  {group: "", value: 0, name:"Belgium", knockout:true},
+  {group: "", value: 0, name:"Croatia", knockout:true},
   {group: "", value: 0, name:"Uruguay", knockout:true},
-  {group: "", value: 0, name:"Switzerland", knockout:true},
-  {group: "", value: 0, name:"Russia", knockout:true},
+  {group: "", value: 0, name:"Colombia", knockout:true},
+  {group: "", value: 0, name:"Sweden", knockout:true},
 ]
 
 ed = [
